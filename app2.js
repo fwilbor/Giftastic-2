@@ -39,6 +39,31 @@ $(document).ready(function () {
             method: "GET"
         }).then(function (response) {
             console.log(response);
-        })
-    })
+            // Storing the data from the AJAX request in the results variable
+            var results = response.data;
+
+            // Looping through each result item
+            for (var i = 0; i < results.length; i++) {
+                // Creating and stroring a div tag
+                var breedDiv = $("<div>");
+                // Creating a paragraph tag with the resulting gifs rating
+                p = $("<p>").text("Rating: " + results[i].rating);
+
+                // Creating and storing an image tag
+                var breedImage = $("<img>");
+
+                // Setting the src attribute of the image to a property pulled off the result item
+                breedImage.attr("src", results[i].images.fixed_height.url);
+
+                // Appending the paragraph and image tag to the breedDiv
+                breedDiv.append(p);
+                breedDiv.append(breedImage);
+
+                // Prepending the breedDiv to the HTML page in the "#breedImagesGoHere" div
+                $("#breedImagesGoHere").prepend(breedDiv);
+
+            }
+
+        });
+    });
 });
