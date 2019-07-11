@@ -13,6 +13,7 @@ function renderButtons() {
 
 
 $("#add-breed").on("click", function (event) {
+    console.log("I've been Clicked!")
 
     // We're using a form so that the user can hit enter instead of clicking the button if they want
     event.preventDefault();
@@ -22,6 +23,7 @@ $("#add-breed").on("click", function (event) {
     // The breed from the textbox is then added to our array
     dogBreeds.push(breed);
     renderButtons();
+    $('#breed-input').val("");
 
 })
 
@@ -57,3 +59,18 @@ $(document).on('click', '.dogs', function () {
 })
 
 renderButtons();
+
+$(".gif").on("click", function () {
+    // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+    var state = $(this).attr("data-state");
+    // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+    // Then, set the image's data-state to animate
+    // Else set src to the data-still value
+    if (state === "still") {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+    } else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+    }
+});
