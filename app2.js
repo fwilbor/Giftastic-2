@@ -22,6 +22,7 @@
 // })
 console.log("Hello World");
 $(document).ready(function () {
+
     var dogBreeds = ["Labrador", "Rottweiler", "Golden Retriever", "French Bulldog", "Pug", "German Sherperd", "Bull Dog", "Pit Bull", "Cane Corso", "Yorkshire Terrier"];
     for (i = 0; i < dogBreeds.length; i++) {
         var button = $("<button>");
@@ -30,6 +31,7 @@ $(document).ready(function () {
         button.text(dogBreeds[i]);
         $("#buttonRow").append(button);
     }
+
     //onclick Function
     $(".dogs").on("click", function () {
         var breed = $(this).attr("data-breed");
@@ -66,4 +68,53 @@ $(document).ready(function () {
 
         });
     });
+
+
+
+
+
+
+
+
+
+
+});
+// / This function handles events where one new breed is added to array and button created
+$("#add-breed").on("click", function (event) {
+    // event.preventDefault() prevents the form from trying to submit itself.
+    // We're using a form so that the user can hit enter instead of clicking the button if they want
+    event.preventDefault();
+    $("buttonRow").empty();
+    // This line will grab the text from the breed-input box
+    var breed = $("#breed-input").val().trim();
+    // The breed from the textbox is then added to our array
+    dogBreeds.push(breed);
+    renderButtons();
+
+
+
+    function renderButtons() {
+
+        $("#buttonRow").empty();
+        for (var i = 0; i < dogBreeds.length; i++) {
+            var a = $("<button>");
+            a.attr("class", "dogs");
+            a.attr("data-breed", dogBreeds[i]);
+            a.text(dogBreeds[i]);
+            $("#buttonRow").append(a);
+
+        }
+
+    }
+    renderButtons();
+
+
+
+
+
+
+
+
+
+
 });
